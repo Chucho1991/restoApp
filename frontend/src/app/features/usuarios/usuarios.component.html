@@ -1,0 +1,46 @@
+<div class="row g-3">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Usuarios</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let usuario of usuarios">
+          <div class="d-flex justify-content-between">
+            <div>
+              <div class="fw-bold">{{ usuario.nombre }}</div>
+              <small class="text-muted">{{ usuario.email }}</small>
+            </div>
+            <span class="badge bg-secondary">{{ usuario.rol }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card h-100">
+      <div class="card-header">
+        <h6 class="mb-0">Agregar usuario</h6>
+      </div>
+      <div class="card-body">
+        <div class="mb-2">
+          <label class="form-label">Nombre</label>
+          <input class="form-control" [(ngModel)]="nuevo.nombre" />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" [(ngModel)]="nuevo.email" />
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Rol</label>
+          <select class="form-select" [(ngModel)]="nuevo.rol">
+            <option *ngFor="let rol of roles()" [value]="rol">{{ rol }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-footer text-end">
+        <button class="btn btn-primary" (click)="crear()">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>

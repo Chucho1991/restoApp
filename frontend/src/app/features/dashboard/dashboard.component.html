@@ -1,0 +1,37 @@
+<div class="row g-3">
+  <div class="col-md-3" *ngFor="let card of [
+    {title: 'Usuarios', count: usuarios.length, icon: 'bi-people-fill'},
+    {title: 'Platos en menú', count: menu.length, icon: 'bi-egg-fried'},
+    {title: 'Mesas', count: mesas.length, icon: 'bi-table'},
+    {title: 'Órdenes', count: ordenes.length, icon: 'bi-receipt'}
+  ]">
+    <div class="card h-100">
+      <div class="card-body d-flex align-items-center">
+        <div class="flex-grow-1">
+          <h6 class="text-muted mb-1">{{ card.title }}</h6>
+          <h2 class="mb-0">{{ card.count }}</h2>
+        </div>
+        <i class="bi" [ngClass]="card.icon" style="font-size: 2rem"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4">
+  <h5 class="mb-3">Cadena de producción</h5>
+  <div class="row g-3">
+    <div class="col-md-4" *ngFor="let estado of ['TOMADA', 'RECIBIDA_DESPACHADOR', 'DESPACHADA']">
+      <div class="card h-100">
+        <div class="card-header fw-bold">{{ estado }}</div>
+        <ul class="list-group list-group-flush" *ngIf="ordenesPorEstado(estado).length; else empty">
+          <li class="list-group-item" *ngFor="let orden of ordenesPorEstado(estado)">
+            Orden {{ orden.id }} · {{ orden.items.length }} items
+          </li>
+        </ul>
+        <ng-template #empty>
+          <div class="p-3 text-muted">Sin órdenes</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

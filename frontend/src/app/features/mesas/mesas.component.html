@@ -1,0 +1,52 @@
+<div class="row g-3">
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Mesas</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let mesa of mesas">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="mb-1">{{ mesa.nombre }}</h6>
+              <small class="text-muted">Capacidad: {{ mesa.ocupantesActuales }}/{{ mesa.ocupantesPosibles }}</small>
+            </div>
+            <span class="badge" [ngClass]="mesa.disponible ? 'bg-success' : 'bg-warning text-dark'">
+              {{ mesa.disponible ? 'Disponible' : 'Ocupada' }}
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card h-100">
+      <div class="card-header">
+        <h6 class="mb-0">Agregar mesa</h6>
+      </div>
+      <div class="card-body">
+        <div class="mb-2">
+          <label class="form-label">Nombre</label>
+          <input class="form-control" [(ngModel)]="nueva.nombre" />
+        </div>
+        <div class="row g-2">
+          <div class="col-6">
+            <label class="form-label">Capacidad</label>
+            <input type="number" min="1" class="form-control" [(ngModel)]="nueva.ocupantesPosibles" />
+          </div>
+          <div class="col-6">
+            <label class="form-label">Ocupantes actuales</label>
+            <input type="number" min="0" class="form-control" [(ngModel)]="nueva.ocupantesActuales" />
+          </div>
+        </div>
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="nueva.disponible" id="disponibleMesa">
+          <label class="form-check-label" for="disponibleMesa">Disponible</label>
+        </div>
+      </div>
+      <div class="card-footer text-end">
+        <button class="btn btn-primary" (click)="crear()">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
