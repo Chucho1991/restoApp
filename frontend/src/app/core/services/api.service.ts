@@ -21,8 +21,8 @@ export class ApiService {
 
   // Menú
   getMenu(categoria?: MenuCategoria): Observable<MenuItem[]> {
-    const params = categoria ? { categoria } : {};
-    return this.http.get<MenuItem[]>(`${this.baseUrl}/menu`, { params });
+    const params = categoria ? { categoria: categoria.toString() } : undefined;
+    return this.http.get<MenuItem[]>(`${this.baseUrl}/menu`, { params, responseType: 'json' });
   }
 
   createMenuItem(item: MenuItem): Observable<MenuItem> {
@@ -31,8 +31,8 @@ export class ApiService {
 
   // Mesas
   getMesas(disponible?: boolean): Observable<Mesa[]> {
-    const params = disponible !== undefined ? { disponible } : {};
-    return this.http.get<Mesa[]>(`${this.baseUrl}/mesas`, { params });
+    const params = disponible !== undefined ? { disponible: String(disponible) } : undefined;
+    return this.http.get<Mesa[]>(`${this.baseUrl}/mesas`, { params, responseType: 'json' });
   }
 
   createMesa(mesa: Mesa): Observable<Mesa> {
