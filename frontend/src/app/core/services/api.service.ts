@@ -41,8 +41,8 @@ export class ApiService {
 
   // Órdenes
   getOrdenes(estado?: EstadoOrden): Observable<Orden[]> {
-    const params = estado ? { estado: estado.toString() } : undefined;
-    return this.http.get<Orden[]>(`${this.baseUrl}/ordenes`, { params, responseType: 'json' });
+    const params = estado ? { estado } : {};
+    return this.http.get<Orden[]>(`${this.baseUrl}/ordenes`, { params });
   }
 
   createOrden(orden: Orden): Observable<Orden> {
